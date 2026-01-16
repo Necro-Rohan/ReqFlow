@@ -19,4 +19,4 @@ const apihistorySchema = new Schema({
 
 const history = mongoose.model("ApiHistory", apihistorySchema)
 
-export default history
+export default history;
