@@ -2,14 +2,13 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import User from "../models/user.js";
 import { registerSchema, loginSchema } from "../validators/authValidator.js";
-import dotenv from "dotenv";
 
-dotenv.config();
 
 export const register = async (req, res) => {
   const result = registerSchema.safeParse(req.body)
-  if(!result.success) {
-    return res.status(400).json({ errors: result.error.errors });
+  if (!result.success) {
+    // console.log(result.error.issues.map(e => e.message));
+    return res.status(400).json({ errors: result.error.issues.map(e => e.message)[0]});
   }
 
   let { name, email, password } = result.data;
@@ -32,8 +31,9 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   const result = loginSchema.safeParse(req.body)
-  if(!result.success) {
-    return res.status(400).json({ errors: result.error.errors });
+  if (!result.success) {
+    // console.log(result.error.issues.map(e => e.message));
+    return res.status(400).json({ errors: result.error.issues.map(e => e.message)[0]});
   }
   
   const { email, password } = result.data;  
