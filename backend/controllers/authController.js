@@ -2,6 +2,9 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import User from "../models/user.js";
 import { registerSchema, loginSchema } from "../validators/authValidator.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const register = async (req, res) => {
   const result = registerSchema.safeParse(req.body)
@@ -9,7 +12,7 @@ export const register = async (req, res) => {
     return res.status(400).json({ errors: result.error.errors });
   }
 
-  const { name, email, password } = result.data;
+  let { name, email, password } = result.data;
   email = email.toLowerCase();
   try {
     const existingUser = await User.findOne({ email });
