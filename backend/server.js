@@ -4,6 +4,7 @@ import connectDB from './db.js';
 import cookieParser from 'cookie-parser';
 import authRoute from './routes/authRoute.js';
 import testApiRoute from './routes/testApiRoute.js';
+import apiHistoryRoute from './routes/apiHistoryRoute.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/test-api", testApiRoute);
 
+app.use("/api/history", apiHistoryRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
