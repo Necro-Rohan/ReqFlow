@@ -15,7 +15,7 @@ const apihistorySchema = new Schema({
   statusCode: Number,
   response: Object,
   timeTaken: Number
-}, { timestamps: true })
+}, { timestamps: true, versionKey: false });
 
 const history = mongoose.model("ApiHistory", apihistorySchema)
 

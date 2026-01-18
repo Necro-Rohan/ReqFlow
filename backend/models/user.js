@@ -18,10 +18,18 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  about: {
+  bio: {
+    type: String
+  },
+  username: {
+    type: String,
+    unique: true,
+    trim: true
+  },
+  website: {
     type: String
   }
-}, { timestamps: true });
+}, { timestamps: true, versionKey: false });
 
 const user = mongoose.model("User", userSchema);
 

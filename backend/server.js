@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import authRoute from './routes/authRoute.js';
 import testApiRoute from './routes/testApiRoute.js';
 import apiHistoryRoute from './routes/apiHistoryRoute.js';
+import profileRoute from './routes/profileRoute.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/test-api", testApiRoute);
 
 app.use("/api/history", apiHistoryRoute);
+app.use("/api/user", profileRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
