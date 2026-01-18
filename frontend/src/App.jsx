@@ -1,8 +1,12 @@
 import { useEffect } from 'react'
 import api from './api/axios.js';
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login.jsx";
+import ProtectedLayout from "./layouts/ProtectedLayout.jsx";
+import ApiTester from "./pages/ApiTester.jsx";
+import History from "./pages/History.jsx";
+import Profile from "./pages/Profile.jsx";
 
 function App() {
   useEffect(() => {
@@ -13,12 +17,16 @@ function App() {
     });
   })
   return (
-    <>
-      <p className="text-3xl font-bold underline">
-        Frontend Application for ReqFlow
-      </p>
-    </>
-  )
+    <Routes>
+      <Route path="/login" element={<Login />} />
+
+      <Route element={<ProtectedLayout />}>
+        <Route path="/" element={<ApiTester />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/profile" element={<Profile />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App
