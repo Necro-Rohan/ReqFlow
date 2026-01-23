@@ -21,7 +21,8 @@ function App() {
       <Route path="/login" element={<Login />} />
 
       <Route element={<ProtectedLayout />}>
-        <Route path="/" element={<ApiTester />} />
+        {/* <Route path="/home" element={<Home />} /> */}
+        <Route path="/test" element={<ApiTester />} />
         <Route path="/history" element={<History />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
