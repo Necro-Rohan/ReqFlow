@@ -25,7 +25,7 @@ const userSchema = new Schema({
     unique: true,
     trim: true
   },
-  website: {
+  avatarUrl: {
     type: String
   }
 }, { timestamps: true, versionKey: false });

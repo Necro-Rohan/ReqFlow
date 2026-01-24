@@ -21,7 +21,7 @@ export const updateProfile = async (req, res) => {
       name: validatedData.data.name ?? existingUser.name,
       username: validatedData.data.username ?? existingUser.username,
       bio: validatedData.data.bio ?? existingUser.bio,
-      website: validatedData.data.website ?? existingUser.website
+      avatarUrl: validatedData.data.avatarUrl ?? existingUser.avatarUrl
     };
 
     if (
@@ -65,12 +65,19 @@ export const updateEmail = async (req, res) => {
 
 export const updatePassword = async (req, res) => {
   try {
-    const { password } = req.body;
-    if (!password || password.length < 8) {
-      return res.status(400).json({ error: "Password must be at least 8 characters long" });
+    const { currentPassword, newPassword } = req.body;
+    if (!newPassword || newPassword.length < 8) {
+      return res.status(400).json({ error: "New password must be at least 8 characters long" });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const existingUser = await user.findById(req.user.userId);
+    if (!existingUser) {
+      return res.status(404).json({ error: "User not found, Please login Again" });
+    }
+    const isMatch = await bcrypt.compare(currentPassword, existingUser.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Current password is incorrect" });
+    }
     const updatedUser = await user.findByIdAndUpdate(
       req.user.userId,
       { $set: { password: hashedPassword } },
@@ -83,15 +90,28 @@ export const updatePassword = async (req, res) => {
 
 export const getProfile = async (req, res) => {
   try {
-    console.log(req.user);
+    // console.log(req.user);
     const userProfile = await user.findById(req.user.userId).select("-password");
     if (!userProfile) {
       return res.status(404).json({ error: "User not found" });
     }
-    console.log(userProfile);
+    // console.log(userProfile);
     res.status(200).json({ user: userProfile });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+
+export const deleteAccount = async (req, res) => {
+  try {
+    const existingUser = await user.findById(req.user.userId);
+    if (!existingUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    await user.findByIdAndDelete(req.user.userId);
+    res.status(200).json({ message: "Account deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
 

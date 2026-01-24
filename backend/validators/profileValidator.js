@@ -10,7 +10,7 @@ export const updateProfileSchema = z
     name: nonEmptyString.optional(),
     username: nonEmptyString.optional(),
     bio: z.string().max(160).optional(),
-    website: z.preprocess(
+    avatarUrl: z.preprocess(
       (val) => (val) === "" ? undefined : val,
       z.url("Invalid URL").optional()
     )
