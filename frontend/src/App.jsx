@@ -5,11 +5,11 @@ import ApiTester from "./pages/ApiTester";
 import History from "./pages/History";
 import Profile from "./pages/Profile";
 import ProtectedLayout from "./layouts/ProtectedLayout";
-// import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    // <AuthProvider>
+    <AuthProvider>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />

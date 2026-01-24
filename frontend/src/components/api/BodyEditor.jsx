@@ -4,7 +4,7 @@ const BodyEditor = ({ value, onChange }) => {
   };
 
   return (
-    <div className="relative h-full min-h-[300px]">
+    <div className="relative h-full min-h-75">
       <textarea
         value={value}
         onChange={handleChange}

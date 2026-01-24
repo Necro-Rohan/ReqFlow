@@ -128,7 +128,7 @@ const RequestForm = ({ onSend, loading, initialRequest }) => {
           </nav>
         </div>
 
-        <div className="min-h-[300px]">
+        <div className="min-h-75">
           {activeTab === "headers" ? (
             <HeadersEditor headers={headers} setHeaders={setHeaders} />
           ) : (
@@ -138,6 +138,6 @@ const RequestForm = ({ onSend, loading, initialRequest }) => {
       </div>
     </div>
   );
-};;
+};
 
 export default RequestForm;
