@@ -1,33 +1,29 @@
-import { useEffect } from 'react'
-import api from './api/axios.js';
-import './App.css'
-import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import ProtectedLayout from "./layouts/ProtectedLayout.jsx";
-import ApiTester from "./pages/ApiTester.jsx";
-import History from "./pages/History.jsx";
-import Profile from "./pages/Profile.jsx";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
+import ApiTester from "./pages/ApiTester";
+import History from "./pages/History";
+import Profile from "./pages/Profile";
+import ProtectedLayout from "./layouts/ProtectedLayout";
+// import { AuthProvider } from "./context/AuthContext";
 
 function App() {
-  useEffect(() => {
-    api.get("/").then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.error("API call error:", err);
-    });
-  })
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
+    // <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Registration />} />
 
-      <Route element={<ProtectedLayout />}>
-        {/* <Route path="/home" element={<Home />} /> */}
-        <Route path="/test" element={<ApiTester />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/profile" element={<Profile />} />
-      </Route>
-    </Routes>
+        <Route element={<ProtectedLayout />}>
+          <Route path="/" element={<Navigate to="/test" replace />} />
+          <Route path="/test" element={<ApiTester />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    // </AuthProvider>
   );
 }
 
-export default App
+export default App;
+

@@ -79,7 +79,7 @@ const Registration = () => {
             <div>
               <label
                 htmlFor="password"
-                class="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 mb-1"
               >
                 Password
               </label>
