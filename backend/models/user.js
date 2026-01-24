@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { de } from "zod/v4/locales";
 
 const { Schema } = mongoose;
 
@@ -26,7 +27,8 @@ const userSchema = new Schema({
     trim: true
   },
   avatarUrl: {
-    type: String
+    type: String,
+    default: "https://api.dicebear.com/7.x/avataaars/svg?seed=necro"
   }
 }, { timestamps: true, versionKey: false });
 
