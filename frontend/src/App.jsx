@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
-import Registration from "./pages/Registration";
-import ApiTester from "./pages/ApiTester";
-import History from "./pages/History";
-import Profile from "./pages/Profile";
-import ProtectedLayout from "./layouts/ProtectedLayout";
-import { AuthProvider } from "./context/AuthContext";
+import Registration from "./pages/Registration.jsx";
+import ApiTester from "./pages/ApiTester.jsx";
+import History from "./pages/History.jsx";
+import Profile from "./pages/Profile.jsx";
+import ProtectedLayout from "./layouts/ProtectedLayout.jsx";
+import { AuthProvider } from "./context/AuthProvider.jsx";
 
 function App() {
   return (

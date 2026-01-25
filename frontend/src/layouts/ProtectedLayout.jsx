@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from "react-router-dom";
-// import Navbar from "../components/common/Navbar";
-import Loader from "../components/common/Loader";
+import Navbar from "../components/common/Navbar.jsx";
+import Loader from "../components/common/Loader.jsx";
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
@@ -29,7 +29,7 @@ const ProtectedLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
-      {/* <Navbar /> */}
+      <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Outlet />
       </main>

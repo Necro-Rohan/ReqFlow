@@ -1,10 +1,10 @@
 import { useState } from "react";
-import ProfileInfoForm from "../components/profile/ProfileInfoForm";
-import EmailUpdateForm from "../components/profile/EmailUpdateForm";
-import PasswordUpdateForm from "../components/profile/PasswordUpdateForm";
-import { logout } from "../services/authService";
-import { deleteAccount } from "../services/profileService";
-import { useAuth } from "../context/AuthContext";
+import ProfileInfoForm from "../components/profile/ProfileInfoForm.jsx";
+import EmailUpdateForm from "../components/profile/EmailUpdateForm.jsx";
+import PasswordUpdateForm from "../components/profile/PasswordUpdateForm.jsx";
+import { logout } from "../services/authService.js";
+import { deleteAccount } from "../services/profileService.js";
+import { useAuth } from "../context/useAuth.js";
 import ConfirmModal from "../components/common/ConfirmModal.jsx";
 import { useNavigate } from "react-router-dom";
 

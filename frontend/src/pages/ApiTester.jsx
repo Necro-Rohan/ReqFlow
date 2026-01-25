@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import RequestForm from "../components/api/RequestForm";
-import Response from "../components/api/Response";
-import Loader from "../components/common/Loader";
-import { testApi } from "../services/apiTestService";
+import RequestForm from "../components/api/RequestForm.jsx";
+import Response from "../components/api/Response.jsx";
+import Loader from "../components/common/Loader.jsx";
+import { testApi } from "../services/apiTestService.js";
 
 const ApiTester = () => {
   const [response, setResponse] = useState(null);

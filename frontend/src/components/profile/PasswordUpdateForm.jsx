@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updatePassword } from "../../services/profileService";
+import { updatePassword } from "../../services/profileService.js";
 
 const PasswordUpdateForm = () => {
   const [currentPassword, setCurrentPassword] = useState("");

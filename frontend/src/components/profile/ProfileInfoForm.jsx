@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { updateProfile } from "../../services/profileService";
-import { useAuth } from "../../context/AuthContext";
+import { updateProfile } from "../../services/profileService.js";
+import { useAuth } from "../../context/useAuth.js";
 
 const ProfileInfoForm = () => {
   const { user, updateUser } = useAuth();
