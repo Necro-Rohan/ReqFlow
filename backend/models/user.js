@@ -21,11 +21,6 @@ const userSchema = new Schema({
   bio: {
     type: String
   },
-  username: {
-    type: String,
-    unique: true,
-    trim: true
-  },
   avatarUrl: {
     type: String,
     default: "https://api.dicebear.com/7.x/avataaars/svg?seed=necro"

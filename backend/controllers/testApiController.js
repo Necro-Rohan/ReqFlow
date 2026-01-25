@@ -6,8 +6,8 @@ export const testApi = async(req, res) => {
   const result = testApiSchema.safeParse(req.body);
   // console.log(result)
   if (!result.success) { 
-    console.log(result)
-    return res.status(400).json({ errors: result.error.issues.map(e => e.message) });
+    // console.log(result)
+    return res.status(400).json({ error: result.error.issues.map(e => e.message) });
   }
   const { url, method, headers, body } = result.data;
 

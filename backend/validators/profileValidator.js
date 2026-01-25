@@ -2,13 +2,12 @@ import { z} from "zod";
 
 const nonEmptyString = z
   .string()
-  .min(3, "Must be at least 3 characters long")
+  .min(3, "Name Must be at least 3 characters long")
   .refine((val) => val.trim().length > 0, "This field Cannot be empty");
 
 export const updateProfileSchema = z
   .object({
     name: nonEmptyString.optional(),
-    username: nonEmptyString.optional(),
     bio: z.string().max(160).optional(),
     avatarUrl: z.preprocess(
       (val) => (val) === "" ? undefined : val,

@@ -39,9 +39,9 @@ const ProfileInfoForm = () => {
     setLoading(true);
     setMessage(null);
     try {
-      console.log(name, bio, avatar);
+      // console.log(name, bio, avatar);
       const response = await updateProfile({ name, bio, avatarUrl: avatar });
-      console.log(response);
+      // console.log(response);
       updateUser(response.user); // Sync with auth context
       setMessage({ type: "success", text: "Profile updated successfully." });
     } catch (err) {
@@ -49,7 +49,7 @@ const ProfileInfoForm = () => {
       setMessage({
         type: "error",
         text:
-          err.response?.data?.errors ||
+          err.response?.data?.error ||
           "Failed to update profile, Please fill required fields appropriately.",
       });
     } finally {
@@ -75,7 +75,7 @@ const ProfileInfoForm = () => {
               <img
                 src={avatar}
                 alt="Current Avatar"
-                className="w-24 h-24 rounded-full border-4 border-gray-200 dark:border-gray-700"
+                className="w-20 h-20 md:w-24 md:h-24 rounded-full border-3 border-gray-200 shadow-md"
               />
             </div>
             <div className="grid grid-cols-5 gap-2">
@@ -84,7 +84,7 @@ const ProfileInfoForm = () => {
                   key={index}
                   type="button"
                   onClick={() => setAvatar(avtr)}
-                  className={`w-16 h-16 rounded-full overflow-hidden border-2 transition-all ${avatar === avtr ? "border-blue-300 scale-110" : "border-transparent hover:border-gray-300 "}`}
+                  className={`w-12 h-12 md:w-20 md:h-20 rounded-full overflow-hidden border transition-all ${avatar === avtr ? "border-blue-300 scale-110" : "border-transparent hover:border-gray-300 "}`}
                 >
                   <img
                     src={avtr}

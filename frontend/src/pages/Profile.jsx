@@ -36,11 +36,11 @@ const Profile = () => {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <div className="mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight mb-2">
+      <div className="mb-8 border-b border-gray-200  pb-4">
+        <h1 className="text-2xl font-bold text-gray-900  tracking-tight mb-2">
           My Profile
         </h1>
-        <p className="text-gray-500 dark:text-gray-400 text-sm">
+        <p className="text-gray-500  text-sm">
           Manage your account settings and preferences.
         </p>
       </div>
@@ -48,23 +48,22 @@ const Profile = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Profile Section */}
         <div className="lg:col-span-1">
-          <div className="bg-white dark:bg-gray-800 shadow-sm rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-            <h3 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
+          <div className="bg-white  shadow-sm rounded-lg border border-gray-200  p-6"> 
+            <h3 className="text-sm font-bold text-gray-900  uppercase tracking-wider mb-4"> 
               Profile
             </h3>
             <div className="flex justify-center mb-6">
               <img
                 src={user.avatarUrl}
                 alt="Current Avatar"
-                className="w-24 h-24 rounded-full border-4 border-gray-100 dark:border-gray-700"
-              />
+                className="w-24 h-24 rounded-full border-3 border-gray-200 shadow-md"/> 
             </div>
             <div className="text-center">
-              <p className="text-gray-900 dark:text-white font-bold">
+              <p className="text-gray-900  font-bold"> 
                 {user.name}
               </p>
-              <p className="text-gray-500 dark:text-gray-400">{user.email}</p>
-              <p className="text-gray-500 dark:text-gray-400">{user.bio}</p>
+              <p className="text-gray-500 ">{user.email}</p> 
+              <p className="text-gray-500 font-medium font-serif text-sm mt-2">{user.bio}</p>
             </div>
           </div>
         </div>

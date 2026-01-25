@@ -8,7 +8,7 @@ export const register = async (req, res) => {
   const result = registerSchema.safeParse(req.body)
   if (!result.success) {
     // console.log(result.error.issues.map(e => e.message));
-    return res.status(400).json({ errors: result.error.issues.map(e => e.message)[0]});
+    return res.status(400).json({ error: result.error.issues.map(e => e.message)[0]});
   }
 
   let { name, email, password } = result.data;
@@ -33,14 +33,14 @@ export const login = async (req, res) => {
   const result = loginSchema.safeParse(req.body)
   if (!result.success) {
     // console.log(result.error.issues.map(e => e.message));
-    return res.status(400).json({ errors: result.error.issues.map(e => e.message)[0]});
+    return res.status(400).json({ error: result.error.issues.map(e => e.message)[0]});
   }
   
   const { email, password } = result.data;  
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "No user found with this email, Please register first" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);

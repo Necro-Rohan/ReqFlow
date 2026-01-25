@@ -5,11 +5,11 @@ import bcrypt from "bcryptjs";
 export const updateProfile = async (req, res) => {
   try {
     const validatedData = updateProfileSchema.safeParse(req.body);
-    console.log(validatedData);
+    // console.log(validatedData);
     if (!validatedData.success) {
       return res
         .status(400)
-        .json({ errors: validatedData.error.issues[0].message });
+        .json({ error: validatedData.error.issues[0].message });
     }
 
     const existingUser = await user.findById(req.user.userId);
@@ -19,16 +19,15 @@ export const updateProfile = async (req, res) => {
 
     const finalData = {
       name: validatedData.data.name ?? existingUser.name,
-      username: validatedData.data.username ?? existingUser.username,
       bio: validatedData.data.bio ?? existingUser.bio,
       avatarUrl: validatedData.data.avatarUrl ?? existingUser.avatarUrl
     };
 
     if (
-      !finalData.name || !finalData.username || finalData.name.trim().length < 3 || finalData.username.trim().length < 3
+      !finalData.name || finalData.name.trim().length < 3
     ) {
       return res.status(400).json({
-        error: "Name and Username must be at least 3 characters long",
+        error: "Name must be at least 3 characters long",
       });
     }
 
@@ -49,7 +48,7 @@ export const updateEmail = async (req, res) => {
     if (!validatedData.success) {
       return res
         .status(400)
-        .json({ errors: validatedData.error.issues[0].message });
+        .json({ error: validatedData.error.issues[0].message });
     }
     const { email } = validatedData;
     const updatedUser = await user.findByIdAndUpdate(

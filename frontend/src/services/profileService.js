@@ -1,9 +1,9 @@
 import api from "../api/axios";
 
 export const updateProfile = async (data) => {
-  console.log(data);
+  // console.log(data);
   const response = await api.patch("/user/profile", data);
-  console.log(response);
+  // console.log(response);
   return response.data;
 };
 

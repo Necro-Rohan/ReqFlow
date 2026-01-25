@@ -9,7 +9,7 @@ export const getApiHistory = async (req, res) => {
       .sort({ createdAt: -1 });
     return res.status(200).json({ history: historyRecords });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({ error: "Server error" });
   }
 };
@@ -25,7 +25,7 @@ export const getApiHistoryById = async (req, res) => {
     }
     return res.status(200).json({ record });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({ error: "Server error" });
   }
 };
@@ -40,7 +40,7 @@ export const deleteApiHistoryById = async (req, res) => {
     }
     return res.status(200).json({ message: "Record deleted successfully" });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({ error: "Server error" });
   }
 }
@@ -52,7 +52,7 @@ export const clearApiHistory = async (req, res) => {
     await history.deleteMany({ userId });
     return res.status(200).json({ message: "All history cleared successfully" });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({ error: "Server error" });
   }
 };

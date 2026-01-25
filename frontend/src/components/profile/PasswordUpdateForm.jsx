@@ -22,7 +22,7 @@ const PasswordUpdateForm = () => {
     setLoading(true);
     setMessage(null);
     try {
-      console.log({ currentPassword, newPassword });
+      // console.log({ currentPassword, newPassword });
       await updatePassword({ currentPassword, newPassword });
       // console.log("passed updatePassword");
       setMessage({ type: "success", text: "Password updated successfully." });
