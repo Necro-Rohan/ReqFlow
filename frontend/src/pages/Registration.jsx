@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { register } from "../services/authService.js";
+import {useAuth} from "../context/useAuth.js";
 
 const Registration = () => {
   const [name, setName] = useState("");
@@ -9,6 +9,7 @@ const Registration = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const {register} = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +20,9 @@ const Registration = () => {
       await register(name, email, password);
       navigate("/test");
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to register");
+      // console.log(err.response?.data?.error);
+      // console.log(err.response?.data);
+      setError(err.response?.data?.error || "Failed to register");
     } finally {
       setLoading(false);
     }

@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
-import { AuthContext } from "./AuthContext";
-import {
-  getProfile,
-  login as apiLogin,
-  logout as apiLogout,
-} from "../services/authService";
+import { AuthContext } from "./AuthContext.js";
+import {getProfile, login as apiLogin, logout as apiLogout, register as apiRegister} from "../services/authService.js";
 
 
 export const AuthProvider = ({ children }) => {
@@ -28,6 +24,12 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, []);
 
+  const register = async (name, email, password) => {
+    const data = await apiRegister(name, email, password);
+    setUser(data.user);
+    return data;
+  };
+
   const login = async (email, password) => {
     const data = await apiLogin(email, password);
     setUser(data.user);
@@ -44,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, updateUser, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser, loading, register }}>
       {!loading && children}
     </AuthContext.Provider>
   );
