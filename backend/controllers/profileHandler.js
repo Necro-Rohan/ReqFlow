@@ -50,7 +50,8 @@ export const updateEmail = async (req, res) => {
         .status(400)
         .json({ error: validatedData.error.issues[0].message });
     }
-    const { email } = validatedData;
+    // console.log(validatedData.data);
+    const { email } = validatedData.data;
     const updatedUser = await user.findByIdAndUpdate(
       req.user.userId,
       { $set: { email } },

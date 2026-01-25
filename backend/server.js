@@ -14,13 +14,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 connectDB();
 
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
+const CLIENT_URL = process.env.CLIENT_URL ?? "http://localhost:5173";
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: CLIENT_URL,
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: CLIENT_URL,
+    credentials: true,
+  }),
+);
 
 
 app.get("/api", (req, res) => {

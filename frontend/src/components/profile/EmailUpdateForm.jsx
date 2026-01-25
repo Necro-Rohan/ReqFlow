@@ -20,6 +20,7 @@ const EmailUpdateForm = () => {
     setMessage(null);
     try {
       const response = await updateEmail(email);
+      // console.log(response);
       updateUser(response.user); // Sync with context
       setMessage({ type: "success", text: "Email updated." });
     } catch (err) {
