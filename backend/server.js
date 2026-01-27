@@ -7,8 +7,14 @@ import testApiRoute from './routes/testApiRoute.js';
 import apiHistoryRoute from './routes/apiHistoryRoute.js';
 import profileRoute from './routes/profileRoute.js';
 import cors from 'cors';
+import path from 'path'; 
+import { fileURLToPath } from 'url'; 
 
 dotenv.config();
+
+// Configure paths for ES Modules, ES Modules do not have __dirname or __filename by default, so making them manually
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -34,6 +40,16 @@ app.use("/api/test", testApiRoute);
 
 app.use("/api/history", apiHistoryRoute);
 app.use("/api/user", profileRoute);
+
+
+// Serve static files from the frontend build directory
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+// Handle React Routing, return all requests to React app
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+// ------------------------
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
