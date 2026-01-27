@@ -1,0 +1,26 @@
+name: Keep Render Backend Awake (IST Business Hours)
+
+on:
+  schedule:
+    # Run every 14 minutes.
+    # We use UTC time here. IST is UTC + 5:30.
+    # Target: 08:00 AM IST to 12:00 AM (Midnight) IST
+    # UTC Equivalent: ~02:30 AM UTC to ~18:30 PM UTC
+    
+    # Cron explanation: 
+    # "*/14" = Every 14 minutes
+    # "2-18" = Between 2 AM UTC (7:30 AM IST) and 6 PM UTC (11:30 PM IST)
+    - cron: '*/14 2-18 * * *'
+
+  # Allows you to manually trigger it from GitHub Actions tab for testing
+  workflow_dispatch:
+
+jobs:
+  ping_server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render Backend
+        # We ping /api because your server.js has a basic endpoint there
+        run: |
+          curl -I https://your-reqflow-app.onrender.com/api
+          echo "Ping sent to keep server awake!"
